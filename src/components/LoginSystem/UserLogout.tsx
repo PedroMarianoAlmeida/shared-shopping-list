@@ -5,7 +5,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './../../src/config/firebaseConfig';
+import { auth } from './../../../src/config/firebaseConfig';
 
 const useStyles = makeStyles((theme) => ({
   logOut: {

@@ -1,9 +1,9 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './../../src/config/firebaseConfig';
+import { auth } from '../../config/firebaseConfig';
 
-import LoginAndCreateUserModal from './LoginCreateUser/LoginAndCreateUser';
+import LoginAndCreateUserModal from '../LoginSystem/LoginCreateUser/LoginAndCreateUser';
 import UserLogout from './UserLogout';
 
 const UserInteraction = () => {

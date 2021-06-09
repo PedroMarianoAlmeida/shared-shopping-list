@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import UserInteraction from './UserInteraction';
+import UserInteraction from './LoginSystem/UserInteraction';
 
 const MyAppBar = ({ appBarHeight }) => {
   const useStyles = makeStyles({

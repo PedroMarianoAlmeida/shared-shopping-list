@@ -7,9 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-import { auth } from '../../config/firebaseConfig';
+import { auth } from '../../../config/firebaseConfig';
 import FireBaseAuthResponseHandler from './FireBaseAuthResponseHandler';
 
 const validationSchema = Yup.object().shape({
@@ -19,6 +19,9 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, 'Must be longer than 6 character')
     .required('Must enter a password'),
+  confirmPassword: Yup.string()
+    .min(6, 'Must be longer than 6 character')
+    .required('Must confirm the password'),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -52,28 +55,36 @@ const ValidationMessage = ({ touched, message }) => {
   );
 };
 
-const LoginForm = ({ setOpen }) => {
+const CreateUserForm = ({ setOpen }) => {
   const classes = useStyles();
 
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const handleSubmit = (values, setSubmitting) => {
     setSubmitting(true);
 
+    if (
+      JSON.stringify(values.password) !== JSON.stringify(values.confirmPassword)
+    ) {
+      values.confirmPassword = '';
+      setSubmitting(false);
+      return;
+    }
+
     //This function trigger the loading hook, when the loading finishing the FireBaseAuthResponseHandler component will trigger
-    signInWithEmailAndPassword(values.email, values.password);
+    createUserWithEmailAndPassword(values.email, values.password);
   };
 
   return (
     <>
       <Typography variant="h4" align="center">
-        Log In
+        Sign In
       </Typography>
 
       {/*Formik tutorial: https://www.youtube.com/watch?v=TxEVnaISj1w&t=131s*/}
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: '', password: '', confirmPassword: '' }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           handleSubmit(values, setSubmitting);
@@ -118,6 +129,29 @@ const LoginForm = ({ setOpen }) => {
               message={errors.password}
             />
 
+            <TextField
+              label="confirm password"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value={values.confirmPassword}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              error={
+                touched.confirmPassword &&
+                (values.confirmPassword !== values.password ||
+                  Boolean(errors.confirmPassword))
+              }
+            />
+            <ValidationMessage
+              touched={touched.confirmPassword}
+              message={
+                errors.confirmPassword ||
+                (values.confirmPassword !== values.password &&
+                  'Password should match')
+              }
+            />
+
             <Button
               variant="contained"
               color="primary"
@@ -125,7 +159,7 @@ const LoginForm = ({ setOpen }) => {
               type="submit"
               disabled={isSubmitting}
             >
-              Login
+              Create Account
             </Button>
 
             <FormHelperText error className={classes.errorText}>
@@ -148,4 +182,4 @@ const LoginForm = ({ setOpen }) => {
   );
 };
 
-export default LoginForm;
+export default CreateUserForm;
