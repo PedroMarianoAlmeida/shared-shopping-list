@@ -55,7 +55,7 @@ const ValidationMessage = ({ touched, message }) => {
   );
 };
 
-const CreateUserForm = ({ setOpen }) => {
+const CreateUserForm = () => {
   const classes = useStyles();
 
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -173,7 +173,6 @@ const CreateUserForm = ({ setOpen }) => {
               initialValues={initialValues}
               setSubmitting={setSubmitting}
               resetForm={resetForm}
-              setOpen={setOpen}
             />
           </form>
         )}

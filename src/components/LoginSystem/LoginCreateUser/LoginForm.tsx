@@ -52,7 +52,7 @@ const ValidationMessage = ({ touched, message }) => {
   );
 };
 
-const LoginForm = ({ setOpen }) => {
+const LoginForm = () => {
   const classes = useStyles();
 
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -139,7 +139,6 @@ const LoginForm = ({ setOpen }) => {
               initialValues={initialValues}
               setSubmitting={setSubmitting}
               resetForm={resetForm}
-              setOpen={setOpen}
             />
           </form>
         )}

@@ -1,10 +1,10 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../config/firebaseConfig';
+import { auth } from '../../../config/firebaseConfig';
 
-import LoginAndCreateUserModal from '../LoginSystem/LoginCreateUser/LoginAndCreateUser';
-import UserLogout from './UserLogout';
+import UserLogout from '../UserLogout';
 
 const UserInteraction = () => {
   const [user, loading] = useAuthState(auth);
@@ -16,7 +16,7 @@ const UserInteraction = () => {
       ) : user ? (
         <UserLogout />
       ) : (
-        <LoginAndCreateUserModal />
+        <Typography>Visitor</Typography>
       )}
     </>
   );

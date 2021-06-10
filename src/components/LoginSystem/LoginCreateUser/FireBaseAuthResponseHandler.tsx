@@ -7,7 +7,6 @@ const FireBaseAuthResponseHandler = ({
   initialValues,
   setSubmitting,
   resetForm,
-  setOpen,
 }) => {
   const isFormFiled = JSON.stringify(values) !== JSON.stringify(initialValues);
 
@@ -15,7 +14,6 @@ const FireBaseAuthResponseHandler = ({
     if (isFormFiled) {
       setSubmitting(false);
       resetForm();
-      setOpen(false);
     }
   };
 

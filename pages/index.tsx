@@ -1,33 +1,28 @@
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+
+import LoginAndCreateUser from './../src/components/LoginSystem/LoginCreateUser/LoginAndCreateUser';
+import UserInteractionIndexPage from '../src/components/LoginSystem/WaitUserLoad/UserInteractionIndex';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+});
 
 export default function Home() {
+  const classes = useStyles();
+
   return (
-    <>
+    <Container className={classes.root}>
       <Typography variant="h1" align="center">
-        Login System Template
+        Welcome
       </Typography>
 
-      <Typography variant="h2">Tech Stack</Typography>
-      <ul>
-        <li>React</li>
-        <li>Next.js</li>
-        <li>Firebase</li>
-        <li>Material UI</li>
-      </ul>
-
-      <Typography variant="h2">Github Repo</Typography>
-      <ul>
-        <li>
-          <Link
-            href="https://github.com/PedroMarianoAlmeida/login-system-firebase-next-js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            here
-          </Link>
-        </li>
-      </ul>
-    </>
+      <UserInteractionIndexPage />
+    </Container>
   );
 }

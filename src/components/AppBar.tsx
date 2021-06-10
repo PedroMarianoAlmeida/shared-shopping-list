@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import UserInteraction from './LoginSystem/UserInteraction';
+import UserInteraction from './LoginSystem/WaitUserLoad/UserInteractionAppBar';
 
 const MyAppBar = ({ appBarHeight }) => {
   const useStyles = makeStyles({
@@ -25,7 +25,7 @@ const MyAppBar = ({ appBarHeight }) => {
     <>
       <AppBar className={classes.root}>
         <Toolbar className={classes.menu}>
-          <Typography>Logo</Typography>
+          <Typography>webChat</Typography>
           <UserInteraction />
         </Toolbar>
       </AppBar>
