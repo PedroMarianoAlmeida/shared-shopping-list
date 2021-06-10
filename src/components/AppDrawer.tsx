@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 
 import UserInteraction from './LoginSystem/WaitUserLoad/UserInteractionAppBar';
+import ChatLoading from './UserLoggedIn/Chat/ChatLoading';
 
 const appBarHeight = '64px';
 const drawerWidth = '45px';
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) =>
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
+
     content: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
@@ -80,7 +82,9 @@ export default function AppDrawer({ children }) {
         }}
         anchor="left"
       >
-        <div className={classes.toolbar} />
+        <div className={`${classes.toolbar}`}>
+          <ChatLoading />
+        </div>
         <Divider />
         <List className={classes.chatSpace}>
           <Avatar className={classes.chatItem}>A</Avatar>
