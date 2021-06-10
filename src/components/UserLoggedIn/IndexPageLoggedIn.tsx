@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
