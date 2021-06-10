@@ -2,16 +2,15 @@ import React from 'react';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 
 import UserInteraction from './LoginSystem/WaitUserLoad/UserInteractionAppBar';
 import ChatLoading from './UserLoggedIn/Chat/ChatLoading';
+import ChatList from './UserLoggedIn/Chat/ChatList';
 
 const appBarHeight = '64px';
 const drawerWidth = '45px';
@@ -49,17 +48,6 @@ const useStyles = makeStyles((theme) =>
       marginLeft: drawerWidth,
       marginTop: appBarHeight,
     },
-
-    chatSpace: {
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-
-    chatItem: {
-      marginTop: theme.spacing(1),
-    },
   })
 );
 
@@ -86,11 +74,7 @@ export default function AppDrawer({ children }) {
           <ChatLoading />
         </div>
         <Divider />
-        <List className={classes.chatSpace}>
-          <Avatar className={classes.chatItem}>A</Avatar>
-          <Avatar className={classes.chatItem}>B</Avatar>
-          <Avatar className={classes.chatItem}>C</Avatar>
-        </List>
+        <ChatList />
       </Drawer>
       <Container>
         <main className={classes.content}>{children}</main>
