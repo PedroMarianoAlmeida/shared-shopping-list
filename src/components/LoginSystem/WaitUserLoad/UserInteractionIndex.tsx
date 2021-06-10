@@ -1,8 +1,8 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../config/firebaseConfig';
+import IndexPageLoggedIn from '../../UserLoggedIn/IndexPageLoggedIn';
 import LoginAndCreateUser from '../LoginCreateUser/LoginAndCreateUser';
 
 const UserInteractionIndexPage = () => {
@@ -13,7 +13,7 @@ const UserInteractionIndexPage = () => {
       {loading ? (
         <CircularProgress color="secondary" />
       ) : user ? (
-        <Typography>Already Logged In</Typography>
+        <IndexPageLoggedIn />
       ) : (
         <LoginAndCreateUser />
       )}

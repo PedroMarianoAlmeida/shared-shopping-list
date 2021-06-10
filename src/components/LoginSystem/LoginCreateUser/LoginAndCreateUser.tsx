@@ -50,15 +50,6 @@ function a11yProps(index: any) {
 
 export default function LoginAndCreateUser() {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const [value, setValue] = React.useState(0);
 
