@@ -5,15 +5,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
 import { auth, db } from '../../config/firebaseConfig';
+import CurrentChat from './Chat/CurrentChat';
 
 const Chats = ({ chats }) => (
-  <>
-    {chats?.length > 0 ? (
-      <Typography>Show Chat</Typography>
-    ) : (
-      <Typography>No Chats</Typography>
-    )}
-  </>
+  <>{chats?.length > 0 ? <CurrentChat /> : <Typography>No Chats</Typography>}</>
 );
 
 const IndexPageLoggedIn = () => {

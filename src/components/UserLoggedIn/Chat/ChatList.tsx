@@ -43,7 +43,7 @@ const ChatListLoaded = ({ user }) => {
 
 const ChatList = () => {
   const [user] = useAuthState(auth);
-  return <>{user ? <ChatListLoaded user={user} /> : <CircularProgress />}</>;
+  return <>{user && <ChatListLoaded user={user} />}</>;
 };
 
 export default ChatList;

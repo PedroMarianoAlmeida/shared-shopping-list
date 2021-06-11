@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import CreateUserForm from './CreateUserForm';
 import LoginForm from './LoginForm';
@@ -58,23 +57,29 @@ export default function LoginAndCreateUser() {
   };
 
   return (
-    <Paper className={classes.root}>
-      <AppBar position="static">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-        >
-          <Tab label="Login" {...a11yProps(0)} />
-          <Tab label="Sign In" {...a11yProps(1)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <LoginForm />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <CreateUserForm />
-      </TabPanel>
-    </Paper>
+    <>
+      <Typography variant="h1" align="center">
+        Welcome
+      </Typography>
+
+      <Paper className={classes.root}>
+        <AppBar position="static">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+          >
+            <Tab label="Login" {...a11yProps(0)} />
+            <Tab label="Sign In" {...a11yProps(1)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <LoginForm />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <CreateUserForm />
+        </TabPanel>
+      </Paper>
+    </>
   );
 }

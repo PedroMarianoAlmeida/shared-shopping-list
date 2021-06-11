@@ -1,4 +1,3 @@
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -17,10 +16,6 @@ export default function Home() {
 
   return (
     <Container className={classes.root}>
-      <Typography variant="h1" align="center">
-        Welcome
-      </Typography>
-
       <UserInteractionIndexPage />
     </Container>
   );
