@@ -26,8 +26,6 @@ const IndexPageLoggedIn = () => {
     }
   );
 
-  console.log(userCollection);
-
   return (
     <div>
       {loading ? (

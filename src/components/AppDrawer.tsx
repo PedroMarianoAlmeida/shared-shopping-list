@@ -9,8 +9,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 
 import UserInteraction from './LoginSystem/WaitUserLoad/UserInteractionAppBar';
-import ChatLoading from './UserLoggedIn/Chat/ChatLoading';
-import ChatList from './UserLoggedIn/Chat/ChatList';
+import ChatListPreparation from './UserLoggedIn/Chat/ChatListPreparation';
 
 const appBarHeight = '64px';
 const drawerWidth = '45px';
@@ -70,11 +69,9 @@ export default function AppDrawer({ children }) {
         }}
         anchor="left"
       >
-        <div className={`${classes.toolbar}`}>
-          <ChatLoading />
-        </div>
+        <div className={`${classes.toolbar}`} />
         <Divider />
-        <ChatList />
+        <ChatListPreparation />
       </Drawer>
       <Container>
         <main className={classes.content}>{children}</main>
