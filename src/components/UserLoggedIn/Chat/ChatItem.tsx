@@ -1,9 +1,12 @@
+import { useContext } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { db } from '../../../config/firebaseConfig';
+import { CurrentChatContext } from './../../../contexts/CurrentChatContext';
 
 const useStyles = makeStyles((theme) => ({
   chatItem: {
@@ -13,10 +16,15 @@ const useStyles = makeStyles((theme) => ({
 
 const ChatItemLoaded = ({ otherUserEmail, chatData }) => {
   const classes = useStyles();
+  const { setCurrentChat } = useContext(CurrentChatContext);
+
+  const handleClick = () => {
+    setCurrentChat(chatData);
+  };
 
   return (
     <Tooltip title={otherUserEmail.email}>
-      <Avatar className={classes.chatItem}>
+      <Avatar className={classes.chatItem} onClick={handleClick}>
         {otherUserEmail.email.substring(0, 2)}
       </Avatar>
     </Tooltip>
