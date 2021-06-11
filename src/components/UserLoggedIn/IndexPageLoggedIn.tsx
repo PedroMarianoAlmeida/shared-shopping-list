@@ -1,7 +1,7 @@
-import { useAuthState } from 'react-firebase-hooks/auth';
-
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth } from '../../config/firebaseConfig';
 import CurrentChat from './Chat/CurrentChat';

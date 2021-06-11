@@ -1,3 +1,5 @@
+import { useContext, useEffect } from 'react';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +9,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import { auth, db } from '../../../config/firebaseConfig';
 import ChatItem from './ChatItem';
+import { CurrentChatContext } from './../../../contexts/CurrentChatContext';
 
 const ChatListLoaded = ({ user }) => {
   const useStyles = makeStyles((theme) => ({
@@ -25,6 +28,16 @@ const ChatListLoaded = ({ user }) => {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
+
+  //When the chat data is loaded, get the most recent chat and update the currentChat object
+  const { setCurrentChat, setChatLoading } = useContext(CurrentChatContext);
+  useEffect(() => {
+    if (chatData?.length > 0) setCurrentChat(chatData[0]);
+  }, [chatData]);
+
+  useEffect(() => {
+    setChatLoading(loading);
+  }, [loading]);
 
   return (
     <>
