@@ -1,29 +1,49 @@
-import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import List from '@material-ui/core/List';
-import Avatar from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  chatItem: {
-    marginTop: theme.spacing(1),
-  },
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-  chatSpace: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-}));
+import { auth, db } from '../../../config/firebaseConfig';
+import ChatItem from './ChatItem';
 
-const ChatList = ({ chatData, chatUsers }) => {
+const ChatListLoaded = ({ user }) => {
+  const useStyles = makeStyles((theme) => ({
+    chatSpace: {
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+  }));
   const classes = useStyles();
-  return (
-    <List className={classes.chatSpace}>
-      <Avatar className={classes.chatItem}>A</Avatar>
-      <Avatar className={classes.chatItem}>B</Avatar>
-      <Avatar className={classes.chatItem}>D</Avatar>
-    </List>
+
+  const [chatData, loading] = useCollectionData(
+    db.collection('chat').where('users', 'array-contains', user.uid),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    }
   );
+
+  return (
+    <>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <List className={classes.chatSpace}>
+          {chatData.map((individualChat) => (
+            <ChatItem chatData={individualChat} user={user} />
+          ))}
+        </List>
+      )}
+    </>
+  );
+};
+
+const ChatList = () => {
+  const [user] = useAuthState(auth);
+  return <>{user ? <ChatListLoaded user={user} /> : <CircularProgress />}</>;
 };
 
 export default ChatList;
