@@ -1,25 +1,13 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useDocumentData } from 'react-firebase-hooks/firestore';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
-import { auth, db } from '../../config/firebaseConfig';
+import { auth } from '../../config/firebaseConfig';
 import CurrentChat from './Chat/CurrentChat';
 
-const Chats = ({ chats }) => (
-  <>{chats?.length > 0 ? <CurrentChat /> : <Typography>No Chats</Typography>}</>
-);
-
 const IndexPageLoggedIn = () => {
-  const [user] = useAuthState(auth);
-
-  const [userCollection, loading, error] = useDocumentData(
-    db.collection('user').doc(user.uid),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    }
-  );
+  const [user, loading, error] = useAuthState(auth);
 
   return (
     <div>
@@ -28,7 +16,7 @@ const IndexPageLoggedIn = () => {
       ) : error ? (
         <Typography>Something went wrong</Typography>
       ) : (
-        <Chats chats={userCollection?.chats} />
+        <CurrentChat />
       )}
     </div>
   );
