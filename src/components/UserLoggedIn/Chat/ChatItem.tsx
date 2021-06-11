@@ -16,10 +16,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ChatItemLoaded = ({ otherUserEmail, chatData }) => {
   const classes = useStyles();
-  const { setCurrentChat } = useContext(CurrentChatContext);
+  const { setCurrentChat, setOtherUserEmail } = useContext(CurrentChatContext);
 
   const handleClick = () => {
     setCurrentChat(chatData);
+    setOtherUserEmail(otherUserEmail);
   };
 
   return (

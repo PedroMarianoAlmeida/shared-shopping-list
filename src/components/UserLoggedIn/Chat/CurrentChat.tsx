@@ -9,19 +9,24 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { CurrentChatContext } from './../../../contexts/CurrentChatContext';
 import { auth } from '../../../config/firebaseConfig';
 
-const ChatBox = ({ currentChat }) => {
+const ChatBox = ({ currentChat, otherUserEmail }) => {
   const [user] = useAuthState(auth);
-
-  return <Paper>A</Paper>;
+  console.log(currentChat.messages);
+  console.log(otherUserEmail);
+  return (
+    <Paper>
+      <Typography>Messages from {otherUserEmail.email}</Typography>
+    </Paper>
+  );
 };
 
-const CurrentChatLoaded = ({ currentChat }) => {
+const CurrentChatLoaded = ({ currentChat, otherUserEmail }) => {
   const isAnyChat = JSON.stringify(currentChat) !== JSON.stringify({});
 
   return (
     <>
       {isAnyChat ? (
-        <ChatBox currentChat={currentChat} />
+        <ChatBox currentChat={currentChat} otherUserEmail={otherUserEmail} />
       ) : (
         <Typography>No chats yet</Typography>
       )}
@@ -30,7 +35,8 @@ const CurrentChatLoaded = ({ currentChat }) => {
 };
 
 const CurrentChat = () => {
-  const { currentChat, chatLoading } = useContext(CurrentChatContext);
+  const { currentChat, chatLoading, otherUserEmail } =
+    useContext(CurrentChatContext);
   console.log(currentChat);
 
   return (
@@ -38,7 +44,10 @@ const CurrentChat = () => {
       {chatLoading ? (
         <CircularProgress />
       ) : (
-        <CurrentChatLoaded currentChat={currentChat} />
+        <CurrentChatLoaded
+          currentChat={currentChat}
+          otherUserEmail={otherUserEmail}
+        />
       )}
     </>
   );
