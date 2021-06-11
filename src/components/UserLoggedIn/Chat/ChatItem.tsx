@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ChatItemLoaded = ({ otherUserEmail }) => {
+const ChatItemLoaded = ({ otherUserEmail, chatData }) => {
   const classes = useStyles();
 
   return (
@@ -41,7 +41,7 @@ const ChatItem = ({ chatData, user }) => {
       {loading ? (
         <Avatar className={classes.chatItem}>...</Avatar>
       ) : (
-        <ChatItemLoaded otherUserEmail={otherUserEmail} />
+        <ChatItemLoaded otherUserEmail={otherUserEmail} chatData={chatData} />
       )}
     </>
   );
